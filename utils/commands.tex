@@ -1,0 +1,146 @@
+% sections のファイルを指定して input
+%* >>> input >>>
+%* 1: sectionsのtexファイル名
+%* <<< input <<<
+\newcommand{\InputChapter}[1]{
+  \input{chapters/#1}
+}
+
+% タイトルページを作成
+%* >>> input >>>
+%* 1: 卒業年後
+%* 2: 論文形式 [卒業論文, 修士論文] 
+%* 3: タイトル921
+%* 4: 指導教員
+%* 5: 大学名
+%* 6: コース名
+%* 7: 学籍番号
+%* 8: 氏名
+%* <<< input <<<
+\newcommand{\MakeCover}[8]{
+  \begin{titlepage}
+    \begin{center}
+      % 卒業年度
+      {\Large #1}\\
+      \vspace{10pt}
+      % 論文形式
+      {\Large #2}\\
+      \vspace*{170pt}
+      % タイトル
+      {\Huge #3}\\
+      \vspace{150pt}
+      {\Large 指導教員}\\
+      \vspace{10pt}
+      % 指導教員
+      {\Large #4}\\
+      \vspace{60pt}
+      % 大学名
+      {\Large #5}\\
+      \vspace{10pt}
+      % コース名
+      {\Large #6}\\
+      \vspace{30pt}
+      % 学籍番号 氏名
+      {\Large #7 #8} 
+    \end{center}
+  \end{titlepage}
+  \newpage
+  \pagestyle{empty}
+  \mbox{}
+  \newpage
+  \addtocounter{page}{-2}
+}
+
+\newcommand{\Label}[1]{
+  \label{\thechapter_#1}
+}
+
+\newcommand{\refImage}[1]{
+  図 \ref{\thechapter_#1}
+}
+
+\newcommand{\refTable}[1]{
+  表 \ref{\thechapter_#1}
+}
+
+\newcommand{\refEquation}[1]{
+  (\ref{\thechapter_#1}) 式
+}
+
+\newcommand{\refChapter}[2]{
+  \ifthenelse{
+    \equal{#2}{}
+  }{
+    第 {\ref{\thechapter_#1}} 章
+  }{
+    第 {\ref{#2_#1}} 章
+  }
+}
+
+\newcommand{\refSection}[2]{
+  \ifthenelse{
+    \equal{#2}{}
+  }{
+    第 {\ref{\thechapter_#1}} 節
+  }{
+    第 {\ref{#2_#1}} 節
+  }
+}
+
+\newcommand{\refAppendix}[2]{
+  \ifthenelse{
+    \equal{#2}{}
+  }{
+    付録 {\ref{\thechapter_#1}}
+  }{
+    付録 {\ref{#2_#1}}
+  }
+}
+
+\newcommand{\todo}[1]{
+  \color{red} #1 \color{black}
+}
+
+\newcommand{\Chapter}[1]{
+  \chapter{#1} \Label{#1}
+}
+
+\newcommand{\Section}[1]{
+  \section{#1} \Label{#1}
+}
+
+\newcommand{\Subsection}[1]{
+  \subsection{#1} \Label{#1}
+}
+
+\newcommand{\Subsubsection}[1]{
+  \subsubsection{#1} \Label{#1}
+}
+
+
+\newcommand{\appendixStart}[0]{
+  \appendix
+  % \renewcommand{\thesection}{付録\Alph{section}}
+  % \renewcommand{\thesubsection}{\Alph{section}.\arabic{subsection}}
+  % \setcounter{section}{0} 
+  % \renewcommand{\theequation}{\Alph{section}.\arabic{equation} }
+  % \setcounter{equation}{0}
+}
+
+\newcommand{\Appendix}[1]{
+  \input{appendixes/#1}
+}
+
+\newcommand{\AppendixChapter}[1]{
+  \Chapter{#1}
+  \renewcommand{\thepage}{\thechapter--\arabic{page}}
+  \setcounter{page}{1}
+}
+
+\newcommand{\larw}[0]{
+ \; \leftarrow \; 
+}
+
+\newcommand{\rarw}[0]{
+ \; \rightarrow \; 
+}

@@ -1,0 +1,39 @@
+% 章見出しの体裁カスタマイズ
+%* >>> input >>>
+%* 1: 見出し名（章タイトル）
+%* <<< input <<<
+\makeatletter
+  \renewcommand{\@makechapterhead}[1]{
+    \vspace*{-2\baselineskip}
+    \noindent\hrulefill\par
+    \vtop to 5\baselineskip{% 5行分の高さを確保
+      \ifthenelse{
+        \equal{\thechapter}{1} \OR
+        \equal{\thechapter}{2} \OR
+        \equal{\thechapter}{3} \OR
+        \equal{\thechapter}{4} \OR
+        \equal{\thechapter}{5} \OR
+        \equal{\thechapter}{6} \OR
+        \equal{\thechapter}{7} \OR
+        \equal{\thechapter}{8} \OR
+        \equal{\thechapter}{9} \OR
+        \equal{\thechapter}{10}
+      }{
+        \noindent\textbf{\large 第\thechapter 章}\par%
+      }{
+        \noindent\textbf{\large 付録\thechapter}\par%
+      }
+      \noindent\textbf{\raisebox{40pt}{\LARGE #1}}\par% 40ptだけ章タイトルを下線から浮かせる
+    }
+    \noindent\hrulefill
+    \vtop to 1\baselineskip{}\par
+  }
+\makeatother
+
+% 定理のコマンドを使用可能にする
+\newtheorem{theorem}{定理}
+
+% 引用図書の名称を参考文献に変更
+\renewcommand{\bibname}{参考文献}
+
+

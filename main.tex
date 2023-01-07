@@ -1,0 +1,63 @@
+% \documentclass[11pt,twoside,dvipdfmx,draft]{jreport}
+\documentclass[11pt,twoside,dvipdfmx]{jreport}
+\usepackage[twoside,top=25truemm,bottom=20truemm,inner=30truemm,outer=20truemm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+%% OTFパッケージを使う
+\usepackage[deluxe,jis2004]{otf}
+%% chapter の font を指定
+\newcommand{\headfont}{\mcfamily\rmfamily}
+%% customStyle でスタイリングする
+\usepackage{utils/customStyle}
+%% 画像を埋め込む package を使用する
+\usepackage[dvipdfmx]{graphicx}
+\usepackage[dvipdfmx]{color}
+\usepackage{float}
+\graphicspath{ {./imgs/} }
+%% テーブルで複数行にまたがるセルを作れる
+\usepackage{multirow}
+%% テーブルに画像を載せるときにsubcaptionを設定可能にする
+\usepackage{subcaption}
+%% 色付き文字を使用する
+\usepackage{color}
+%% 条件分岐可能
+\usepackage{ifthen}
+%% ページを跨いだtableを表示させる
+\usepackage{longtable}
+%% tableで破線を使う
+\usepackage{arydshln}
+
+\usepackage{docmute}
+\input{utils/commands}
+
+%% 数式の環境の拡張
+\usepackage{amsmath, amssymb, newtxmath, amsfonts, empheq, bm}
+
+
+
+\begin{document} 
+\MakeCover{令和 x 年 }
+          { xx 論文 }
+          { タイトル }
+          { 担当教員 }
+          { xx 大学 }
+          { xx 専攻 xx 研究室 }
+          { 学籍番号 }
+          { 著者氏名 }
+\tableofcontents
+\newpage
+
+
+\InputChapter{01_chapter}
+\InputChapter{02_chapter}
+\InputChapter{03_chapter}
+\InputChapter{04_chapter}
+
+\bibliographystyle{junsrt}
+\bibliography{reference}
+
+\appendixStart
+
+\Appendix{01_appendix}
+
+\end{document}
